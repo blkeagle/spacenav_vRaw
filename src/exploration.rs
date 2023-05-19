@@ -1,7 +1,7 @@
 //@path = "src/exploration.rs"
 use crate::player::Player;
 
-use crate::sector::{self};
+use crate::sector;
 use crate::universe::Universe;
 use std::io::Write;
 
@@ -19,9 +19,7 @@ pub fn handle_move(universe: &Universe, player: &mut Player, target_sector_id: u
 fn handle_automovement(universe: &Universe, player: &mut Player, target_sector_id: u32) {
     if let Some(path) = universe.shortest_path(player.current_sector(), target_sector_id) {
         // If there is a shortest path, ask for auto movement
-        println!();
-        println!();
-        println!("That sector is not adjacent.");
+        println!("\n\nThat sector is not adjacent.");
         let path_display: Vec<String> = path
             .iter()
             .map(|&i| {
@@ -39,8 +37,7 @@ fn handle_automovement(universe: &Universe, player: &mut Player, target_sector_i
             target_sector_id,
             path_display.join(" > ")
         );
-        println!();
-        println!("Engage auto movement? [Y/N]");
+        println!("\nEngage auto movement? [Y/N]");
         let mut input = String::new();
         std::io::stdin().read_line(&mut input).unwrap();
         if input.trim().eq_ignore_ascii_case("Y") {
@@ -69,10 +66,8 @@ fn move_along_path(universe: &Universe, player: &mut Player, path: Vec<u32>) {
             std::thread::sleep(std::time::Duration::from_millis(300));
         }
         print!(">");
-        println!();
-        println!("Moving to Sector {} ...", sector_id);
+        println!("\nMoving to Sector {} ...\n", sector_id);
         std::thread::sleep(std::time::Duration::from_millis(100));
-        println!();
         // Check if it is the last sector using len
         if index < path.len() - 1 {
             let current_sector = universe.sector(player.current_sector()).unwrap();

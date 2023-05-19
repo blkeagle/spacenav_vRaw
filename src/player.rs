@@ -15,9 +15,9 @@ impl Player {
             name,
             current_sector: 1,
             visited_sectors: Vec::new(),
-            last_online: " ".to_string(),
-            rank: " ".to_string(),
-            experience: 1,
+            last_online: "todo!()".to_string(),
+            rank: "todo!()".to_string(),
+            experience: 0,
         };
         player.visit(1); // Mark sector 1 as visited at the start of the game
         player
@@ -34,18 +34,19 @@ impl Player {
         self.visited_sectors.contains(&sector_id)
     }
     pub fn display_basic_info(&self) {
-        println!("[Basic Information]");
+        println!("\n[Basic Information]\n");
         println!("Player Name: {}", self.name);
         println!("Last Day Online: {}", self.last_online);
         println!("Rank: {}", self.rank);
         println!("Experience: {}", self.experience);
 
-        println!("\n[Navigation Information]");
+        println!("\n[Navigation Information]\n");
         println!("Current Sector: {}", self.current_sector);
         // println!("Universe Discovery: {} out of {} sectors ({}%)", 
         //     self.visited_sectors.len(), todo!(), todo!()); 
         //     /* total number of sectors */ 
         //     /* percentage of discovered sectors */
+        println!("\n\n");
     }
 }
 
