@@ -4,6 +4,9 @@ pub struct Player {
     name: String,
     current_sector: u32,
     visited_sectors: Vec<u32>,
+    last_online: String, // new field, consider using a date/time type
+    rank: String, // new field
+    experience: u32, // new field
 }
 
 impl Player {
@@ -12,6 +15,9 @@ impl Player {
             name,
             current_sector: 1,
             visited_sectors: Vec::new(),
+            last_online: " ".to_string(),
+            rank: " ".to_string(),
+            experience: 1,
         };
         player.visit(1); // Mark sector 1 as visited at the start of the game
         player
@@ -27,15 +33,30 @@ impl Player {
     pub fn has_visited(&self, sector_id: u32) -> bool {
         self.visited_sectors.contains(&sector_id)
     }
+    pub fn display_basic_info(&self) {
+        println!("[Basic Information]");
+        println!("Player Name: {}", self.name);
+        println!("Last Day Online: {}", self.last_online);
+        println!("Rank: {}", self.rank);
+        println!("Experience: {}", self.experience);
+
+        println!("\n[Navigation Information]");
+        println!("Current Sector: {}", self.current_sector);
+        // println!("Universe Discovery: {} out of {} sectors ({}%)", 
+        //     self.visited_sectors.len(), todo!(), todo!()); 
+        //     /* total number of sectors */ 
+        //     /* percentage of discovered sectors */
+    }
 }
 
 // Getter methods for Player
+#[allow(dead_code)]
 impl Player {
     pub fn name(&self) -> &String {
         &self.name
     }
 
-    pub fn _visited_sectors(&self) -> &Vec<u32> {
+    pub fn visited_sectors(&self) -> &Vec<u32> {
          &self.visited_sectors
     }
     pub fn current_sector(&self) -> u32 {

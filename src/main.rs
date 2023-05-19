@@ -16,8 +16,9 @@ fn clear_screen() {
     print!("\x1B[2J\x1B[1;1H");
 }
 
+
 fn main() {
-    let mut input = String::new();
+        let mut input = String::new();
     
     clear_screen();
     println!("Enter your name:");

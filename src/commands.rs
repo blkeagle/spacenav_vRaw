@@ -18,7 +18,10 @@ pub fn run_game_loop(universe: &Universe, player: &mut Player) {
         std::io::stdin().read_line(&mut input).unwrap();
         let command = input.trim();
 
-        sector_menu_command(universe, player, command);
+        match command {
+            "/" => player.display_basic_info(),
+            _ => sector_menu_command(universe, player, command),
+        }
     }
 }
 
