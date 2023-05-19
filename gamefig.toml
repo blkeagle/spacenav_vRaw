@@ -1,0 +1,14 @@
+#@path = ../gameconfig.toml
+
+[game_config]
+random_seed = 0 #if 0, then random seed is used
+universe_size_in_sectors = 5000
+maximum_possible_players = 100
+standard_starport_power = 100
+special_starport_power = 200
+maximum_possible_starports = 50
+initial_starports_to_build = 10
+maximum_possible_planets = 500
+two_way_warps = 1000
+one_way_warps = 500
+internal_alien_traders = true
