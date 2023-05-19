@@ -21,7 +21,7 @@ fn main() {
         let mut input = String::new();
     
     clear_screen();
-    println!("Enter your name:");
+    println!("\nEnter your name:");
     std::io::stdin().read_line(&mut input).unwrap();
     let name = input.trim().to_string();
 
@@ -33,7 +33,7 @@ fn main() {
     
     clear_screen();
     println!(
-        "Awesome! Welcome: {}! You are in sector 1. This Universe was created at {:?}.",
+        "\nAwesome! Welcome: {}! You are in sector 1. This Universe was created at {:?}.",
         player.name(),
         universe.created_at()
     );

@@ -18,17 +18,21 @@ pub fn run_game_loop(universe: &Universe, player: &mut Player) {
         std::io::stdin().read_line(&mut input).unwrap();
         let command = input.trim();
 
-        match command {
-            "/" => player.display_basic_info(),
-            _ => sector_menu_command(universe, player, command),
-        }
+        player_menu_command(command, player, universe);
+    }
+}
+
+fn player_menu_command(command: &str, player: &mut Player, universe: &Universe) {
+    match command {
+        "/" => player.display_basic_info(),
+        _ => sector_menu_command(universe, player, command),
     }
 }
 
 fn sector_menu_command(universe: &Universe, player: &mut Player, command: &str) {
     match command {
         "" => {
-            println!("<Re-Display>");
+            println!("\n<Re-Display>\n");
             println!();
         }
         "quit" | "q" => {

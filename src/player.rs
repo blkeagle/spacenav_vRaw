@@ -2,11 +2,13 @@
 
 pub struct Player {
     name: String,
-    current_sector: u32,
+    pub current_sector: u32,
+    pub last_visited_sector: u32,
     visited_sectors: Vec<u32>,
     last_online: String, // new field, consider using a date/time type
     rank: String, // new field
     experience: u32, // new field
+    pub last_move_was_automovement: bool,
 }
 
 impl Player {
@@ -14,10 +16,12 @@ impl Player {
         let mut player = Player {
             name,
             current_sector: 1,
+            last_visited_sector: 1,
             visited_sectors: Vec::new(),
             last_online: "todo!()".to_string(),
             rank: "todo!()".to_string(),
             experience: 0,
+            last_move_was_automovement: false,
         };
         player.visit(1); // Mark sector 1 as visited at the start of the game
         player
@@ -42,6 +46,11 @@ impl Player {
 
         println!("\n[Navigation Information]\n");
         println!("Current Sector: {}", self.current_sector);
+        if self.last_move_was_automovement {
+            println!("Last Sector: {} (Automovement)", self.last_visited_sector);
+        } else {
+            println!("Last Sector: {}", self.last_visited_sector);
+        }
         // println!("Universe Discovery: {} out of {} sectors ({}%)", 
         //     self.visited_sectors.len(), todo!(), todo!()); 
         //     /* total number of sectors */ 

@@ -9,7 +9,8 @@ use std::io::Write;
 pub fn handle_move(universe: &Universe, player: &mut Player, target_sector_id: u32) {
     let current_sector = universe.sector(player.current_sector()).unwrap();
     if current_sector.connections().contains(&target_sector_id) {
-        // If the target sector is directly connected, move immediately
+        player.last_visited_sector = player.current_sector(); // update the last sector
+        player.last_move_was_automovement = false; // update the automovement flag
         player.visit(target_sector_id);
     } else {
         handle_automovement(universe, player, target_sector_id);
@@ -42,6 +43,9 @@ fn handle_automovement(universe: &Universe, player: &mut Player, target_sector_i
         std::io::stdin().read_line(&mut input).unwrap();
         if input.trim().eq_ignore_ascii_case("Y") {
             // If auto movement is confirmed, move along the path
+            player.last_visited_sector = player.current_sector(); // update the last sector
+            player.last_move_was_automovement = true; // update the automovement flag
+            player.current_sector = target_sector_id; // move the player
             move_along_path(universe, player, path);
         }
     } else {
