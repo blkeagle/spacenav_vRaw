@@ -33,7 +33,7 @@ fn main() {
     
     clear_screen();
     println!(
-        "\nAwesome! Welcome: {}! You are in sector 1. This Universe was created at {:?}.",
+        "\nAwesome! Welcome: {}! You are in sector 1. This Universe was created at {:?}.\n",
         player.name(),
         universe.created_at()
     );

@@ -32,7 +32,7 @@ fn handle_automovement(universe: &Universe, player: &mut Player, target_sector_i
             })
             .collect();
         println!(
-            "The shortest path ({} hops) from sector {} to sector {} is: {}",
+            "The shortest path ({} hops) from sector {} to sector {} is: {}\n",
             path.len(),
             player.current_sector(),
             target_sector_id,
@@ -51,7 +51,7 @@ fn handle_automovement(universe: &Universe, player: &mut Player, target_sector_i
     } else {
         // If there is no path, print an error message
         println!(
-            "There's no path from sector {} to sector {}.",
+            "There's no path from sector {} to sector {}.\n",
             player.current_sector(),
             target_sector_id
         );
